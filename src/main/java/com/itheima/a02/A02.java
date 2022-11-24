@@ -21,10 +21,10 @@ public class A02 {
     private static final Logger log = LoggerFactory.getLogger(A02.class);
 
     public static void main(String[] args) {
-        testClassPathXmlApplicationContext();
+        /*testClassPathXmlApplicationContext();*/
 //        testFileSystemXmlApplicationContext();
 //        testAnnotationConfigApplicationContext();
-//        testAnnotationConfigServletWebServerApplicationContext();
+        testAnnotationConfigServletWebServerApplicationContext();
 
         /*DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         System.out.println("读取之前...");
