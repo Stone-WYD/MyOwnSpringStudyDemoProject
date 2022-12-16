@@ -9,9 +9,11 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
 import org.springframework.web.context.request.ServletWebRequest;
+import org.springframework.web.method.support.InvocableHandlerMethod;
 import org.springframework.web.servlet.mvc.method.annotation.ServletRequestDataBinderFactory;
 
 import java.util.Date;
+import java.util.List;
 
 public class TestServletDataBinderFactory {
     public static void main(String[] args) throws Exception {
@@ -23,8 +25,8 @@ public class TestServletDataBinderFactory {
         // "1. 用工厂, 无转换功能"
 //        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null, null);
         // "2. 用 @InitBinder 转换"          PropertyEditorRegistry PropertyEditor
-//        InvocableHandlerMethod method = new InvocableHandlerMethod(new MyController(), MyController.class.getMethod("aaa", WebDataBinder.class));
-//        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(List.of(method), null);
+/*        InvocableHandlerMethod method = new InvocableHandlerMethod(new MyController(), MyController.class.getMethod("aaa", WebDataBinder.class));
+        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(List.of(method), null);*/
         // "3. 用 ConversionService 转换"    ConversionService Formatter
 //        FormattingConversionService service = new FormattingConversionService();
 //        service.addFormatter(new MyDateFormatter("用 ConversionService 方式扩展转换功能"));
