@@ -2,8 +2,10 @@ package com.itheima.a05;
 
 import com.itheima.a05.mapper.Mapper1;
 import com.itheima.a05.mapper.Mapper2;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.ConfigurationClassPostProcessor;
 import org.springframework.context.support.GenericApplicationContext;
 
 import java.io.IOException;
@@ -24,7 +26,7 @@ public class A05 {
 //            bd.getPropertyValues().add("basePackage", "com.itheima.a05.mapper");
 //        });
 
-//        context.registerBean(ComponentScanPostProcessor.class); // 解析 @ComponentScan
+        context.registerBean(ComponentScanPostProcessor.class); // 解析 @ComponentScan
 
         context.registerBean(AtBeanPostProcessor.class); // 解析 @Bean
         context.registerBean(MapperPostProcessor.class); // 解析 Mapper 接口

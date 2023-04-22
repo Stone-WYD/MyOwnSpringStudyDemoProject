@@ -30,14 +30,14 @@ public class DigInAutowired {
 //        processor.postProcessProperties(null, bean1, "bean1"); // 执行依赖注入 @Autowired @Value
 //        System.out.println(bean1);
 
-//        Method findAutowiringMetadata = AutowiredAnnotationBeanPostProcessor.class.getDeclaredMethod("findAutowiringMetadata", String.class, Class.class, PropertyValues.class);
-//        findAutowiringMetadata.setAccessible(true);
-//        InjectionMetadata metadata = (InjectionMetadata) findAutowiringMetadata.invoke(processor, "bean1", Bean1.class, null);// 获取 Bean1 上加了 @Value @Autowired 的成员变量，方法参数信息
-//        System.out.println(metadata);
+        Method findAutowiringMetadata = AutowiredAnnotationBeanPostProcessor.class.getDeclaredMethod("findAutowiringMetadata", String.class, Class.class, PropertyValues.class);
+        findAutowiringMetadata.setAccessible(true);
+        InjectionMetadata metadata = (InjectionMetadata) findAutowiringMetadata.invoke(processor, "bean1", Bean1.class, null);// 获取 Bean1 上加了 @Value @Autowired 的成员变量，方法参数信息
+        System.out.println(metadata);
 
         // 2. 调用 InjectionMetadata 来进行依赖注入, 注入时按类型查找值
-//        metadata.inject(bean1, "bean1", null);
-//        System.out.println(bean1);
+        metadata.inject(bean1, "bean1", null);
+        System.out.println(bean1);
 
         // 3. 如何按类型查找值
         Field bean3 = Bean1.class.getDeclaredField("bean3");
@@ -55,6 +55,8 @@ public class DigInAutowired {
         DependencyDescriptor dd3 = new DependencyDescriptor(new MethodParameter(setHome, 0), true);
         Object o2 = beanFactory.doResolveDependency(dd3, null, null, null);
         System.out.println(o2);
+
+
 
     }
 }

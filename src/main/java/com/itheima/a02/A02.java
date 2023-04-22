@@ -24,7 +24,7 @@ public class A02 {
         /*testClassPathXmlApplicationContext();*/
 //        testFileSystemXmlApplicationContext();
 //        testAnnotationConfigApplicationContext();
-        testAnnotationConfigServletWebServerApplicationContext();
+        testClassPathXmlApplicationContext();
 
         /*DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         System.out.println("读取之前...");
@@ -129,6 +129,16 @@ public class A02 {
     }
 
     static class Bean1 {
+
+        private Bean2 bean2;
+
+        public Bean2 getBean2() {
+            return bean2;
+        }
+
+        public void setBean2(Bean2 bean2) {
+            this.bean2 = bean2;
+        }
     }
 
     static class Bean2 {

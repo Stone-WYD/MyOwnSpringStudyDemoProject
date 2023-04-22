@@ -4,7 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 控制反转, 让 bean1 被 Spring 容器管理 -->
-    <bean id="bean1" class="com.itheima.a02.A02.Bean1"/>
+    <bean id="bean1" class="com.itheima.a02.A02.Bean1">
+        <property name="bean2" ref="bean2"/>
+    </bean>
 
     <!-- 控制反转, 让 bean2 被 Spring 容器管理 -->
     <bean id="bean2" class="com.itheima.a02.A02.Bean2">
