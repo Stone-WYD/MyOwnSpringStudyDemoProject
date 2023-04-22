@@ -1,5 +1,6 @@
 package com.itheima.a12;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -26,7 +27,7 @@ public class A12 {
         Object invoke(Object proxy, Method method, Object[] args) throws Throwable;
     }*/
 
-    public static void main(String[] param) {
+    public static void main(String[] param) throws IOException {
         Foo proxy = new $Proxy0(new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable{
@@ -37,8 +38,15 @@ public class A12 {
                 return method.invoke(new Target(), args);
             }
         });
+
+        System.out.println(proxy.getClass());
+
         proxy.foo();
         proxy.bar();
+
+        System.out.println(proxy);
+        System.in.read();
+
         /*
             学到了什么: 代理一点都不难, 无非就是利用了多态、反射的知识
                 1. 方法重写可以增强逻辑, 只不过这【增强逻辑】千变万化, 不能写死在代理内部

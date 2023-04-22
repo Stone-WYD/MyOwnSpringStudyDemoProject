@@ -64,7 +64,7 @@ public class A27 {
         // 6. 测试返回值类型为 HttpHeaders 时, 此时不走视图流程
 
         // 7. 测试返回值添加了 @ResponseBody 注解时, 此时不走视图流程
-        test7(context);
+        test1(context);
 
         /*
             学到了什么
