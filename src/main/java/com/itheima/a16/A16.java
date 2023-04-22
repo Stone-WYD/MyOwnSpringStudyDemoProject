@@ -9,15 +9,15 @@ import java.lang.reflect.Method;
 
 public class A16 {
     public static void main(String[] args) throws NoSuchMethodException {
-//        AspectJExpressionPointcut pt1 = new AspectJExpressionPointcut();
-//        pt1.setExpression("execution(* bar())");
-//        System.out.println(pt1.matches(T1.class.getMethod("foo"), T1.class));
-//        System.out.println(pt1.matches(T1.class.getMethod("bar"), T1.class));
-//
-//        AspectJExpressionPointcut pt2 = new AspectJExpressionPointcut();
-//        pt2.setExpression("@annotation(org.springframework.transaction.annotation.Transactional)");
-//        System.out.println(pt2.matches(T1.class.getMethod("foo"), T1.class));
-//        System.out.println(pt2.matches(T1.class.getMethod("bar"), T1.class));
+        AspectJExpressionPointcut pt1 = new AspectJExpressionPointcut();
+        pt1.setExpression("execution(* bar())");
+        System.out.println(pt1.matches(T1.class.getMethod("foo"), T1.class));
+        System.out.println(pt1.matches(T1.class.getMethod("bar"), T1.class));
+
+        AspectJExpressionPointcut pt2 = new AspectJExpressionPointcut();
+        pt2.setExpression("@annotation(org.springframework.transaction.annotation.Transactional)");
+        System.out.println(pt2.matches(T1.class.getMethod("foo"), T1.class));
+        System.out.println(pt2.matches(T1.class.getMethod("bar"), T1.class));
 
         StaticMethodMatcherPointcut pt3 = new StaticMethodMatcherPointcut() {
             @Override
