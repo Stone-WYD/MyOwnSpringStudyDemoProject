@@ -37,13 +37,14 @@ public class A15 {
                 b. proxyTargetClass = false,  目标没有实现接口, 用 cglib 实现
                 c. proxyTargetClass = true, 总是使用 cglib 实现
          */
-        Target2 target = new Target2();
+        // Target2 target = new Target2();
+        Target1 target = new Target1();
         ProxyFactory factory = new ProxyFactory();
         factory.setTarget(target);
         factory.addAdvisor(advisor);
         factory.setInterfaces(target.getClass().getInterfaces());
         factory.setProxyTargetClass(false);
-        Target2 proxy = (Target2) factory.getProxy();
+        I1 proxy = (I1) factory.getProxy();
         System.out.println(proxy.getClass());
         proxy.foo();
         proxy.bar();

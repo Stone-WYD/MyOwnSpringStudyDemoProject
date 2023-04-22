@@ -23,8 +23,12 @@ public class A15_1 {
         Bean1 bean1 = context.getBean(Bean1.class);
         bean1.foo();
         System.out.println(bean1.getClass());
+        System.out.println("=============");
         // 此代理是为了解决功能增强问题
-        System.out.println(context.getBean("scopedTarget.bean1").getClass());
+        Bean1 bean = (Bean1) context.getBean("scopedTarget.bean1");
+        System.out.println(bean.getClass());
+        bean1.foo();
+        // 结果说明代理能重复代理，每次获取到的不一样的bean都会代理
     }
 
     static class MyConfig {

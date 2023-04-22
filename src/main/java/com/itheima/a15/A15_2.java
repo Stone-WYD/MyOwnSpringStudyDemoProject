@@ -18,6 +18,7 @@ public class A15_2 {
         beanFactory.registerBeanDefinition("aspect1", BeanDefinitionBuilder.genericBeanDefinition(Aspect1.class).getBeanDefinition());
         AnnotationAwareAspectJAutoProxyCreator creator = new AnnotationAwareAspectJAutoProxyCreator();
         creator.setBeanFactory(beanFactory);
+        // 获取所有可选的切面
         Method findEligibleAdvisors = AbstractAdvisorAutoProxyCreator.class.getDeclaredMethod("findEligibleAdvisors", Class.class, String.class);
         findEligibleAdvisors.setAccessible(true);
         List obj = (List) findEligibleAdvisors.invoke(creator, Bean1.class, "bean1");
