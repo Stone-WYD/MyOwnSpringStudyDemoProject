@@ -1,5 +1,6 @@
 package com.itheima.a06;
 
+import com.itheima.a05.Bean1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -25,10 +26,17 @@ public class MyConfig2 implements InitializingBean, ApplicationContextAware {
         log.debug("注入 ApplicationContext");
     }
 
-    @Bean //  beanFactory 后处理器
+/*    @Bean //  beanFactory 后处理器
     public BeanFactoryPostProcessor processor2() {
         return beanFactory -> {
             log.debug("执行 processor2");
         };
+    }*/
+
+    @Bean
+    public Bean1 setMyBean1(){
+        Bean1 bean1 = new Bean1();
+        bean1.setName("bean1");
+        return bean1;
     }
 }

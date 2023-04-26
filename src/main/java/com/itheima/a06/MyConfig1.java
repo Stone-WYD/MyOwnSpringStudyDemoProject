@@ -13,6 +13,10 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class MyConfig1 {
 
+    public MyConfig1() {
+
+    }
+
     private static final Logger log = LoggerFactory.getLogger(MyConfig1.class);
 
     @Autowired

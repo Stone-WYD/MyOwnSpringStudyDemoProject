@@ -25,7 +25,7 @@ import java.util.List;
 @Configuration
 @ComponentScan
 @PropertySource("classpath:application.properties")
-@EnableConfigurationProperties({WebMvcProperties.class, ServerProperties.class})
+@EnableConfigurationProperties({WebMvcProperties.class, ServerProperties.class}) // 注入配置类（有 @ConfigurationProperties 注解的类）
 public class WebConfig {
     // ⬅️内嵌 web 容器工厂
     @Bean
@@ -41,8 +41,8 @@ public class WebConfig {
 
     // ⬅️注册 DispatcherServlet, Spring MVC 的入口
     @Bean
-    public DispatcherServletRegistrationBean dispatcherServletRegistrationBean(
-            DispatcherServlet dispatcherServlet, WebMvcProperties webMvcProperties) {
+    public DispatcherServletRegistrationBean dispatcherServletRegistrationBean(DispatcherServlet dispatcherServlet,
+                                                                               WebMvcProperties webMvcProperties) {
         DispatcherServletRegistrationBean registrationBean = new DispatcherServletRegistrationBean(dispatcherServlet, "/");
         registrationBean.setLoadOnStartup(webMvcProperties.getServlet().getLoadOnStartup());
         return registrationBean;

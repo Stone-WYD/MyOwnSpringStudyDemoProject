@@ -1,6 +1,11 @@
 package com.itheima.a05;
 
+import com.itheima.a05.component.Bean2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -19,9 +24,15 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 public class ComponentScanPostProcessor implements BeanDefinitionRegistryPostProcessor {
+
+    private static final Logger log = LoggerFactory.getLogger(ComponentScanPostProcessor.class);
+    public ComponentScanPostProcessor() {
+        log.debug("我，一个工厂后处理器，被创建啦！");
+    }
+
     @Override // context.refresh
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
-
+        System.out.println("在此处打断点查看 单例池 情况...");
     }
 
     @Override
@@ -59,4 +70,5 @@ public class ComponentScanPostProcessor implements BeanDefinitionRegistryPostPro
             e.printStackTrace();
         }
     }
+
 }
