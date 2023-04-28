@@ -3,6 +3,7 @@ package com.itheima.a23;
 import org.springframework.boot.convert.ApplicationConversionService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.bind.ServletRequestParameterPropertyValues;
 import org.springframework.web.bind.WebDataBinder;
@@ -23,7 +24,7 @@ public class TestServletDataBinderFactory {
 
         User target = new User();
         // "1. 用工厂, 无转换功能"
-//        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null, null);
+        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null, null);
         // "2. 用 @InitBinder 转换"          PropertyEditorRegistry PropertyEditor
 /*        InvocableHandlerMethod method = new InvocableHandlerMethod(new MyController(), MyController.class.getMethod("aaa", WebDataBinder.class));
         ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(List.of(method), null);*/
@@ -34,20 +35,20 @@ public class TestServletDataBinderFactory {
 //        initializer.setConversionService(service);
 //        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null, initializer);
         // "4. 同时加了 @InitBinder 和 ConversionService"
-//        InvocableHandlerMethod method = new InvocableHandlerMethod(new MyController(), MyController.class.getMethod("aaa", WebDataBinder.class));
-//
-//        FormattingConversionService service = new FormattingConversionService();
-//        service.addFormatter(new MyDateFormatter("用 ConversionService 方式扩展转换功能"));
-//        ConfigurableWebBindingInitializer initializer = new ConfigurableWebBindingInitializer();
-//        initializer.setConversionService(service);
-//
-//        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(List.of(method), initializer);
-        // "5. 使用默认 ConversionService 转换"
-        ApplicationConversionService service = new ApplicationConversionService();
+/*        InvocableHandlerMethod method = new InvocableHandlerMethod(new MyController(), MyController.class.getMethod("aaa", WebDataBinder.class));
+
+        FormattingConversionService service = new FormattingConversionService();
+        service.addFormatter(new MyDateFormatter("用 ConversionService 方式扩展转换功能"));
         ConfigurableWebBindingInitializer initializer = new ConfigurableWebBindingInitializer();
         initializer.setConversionService(service);
 
-        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null, initializer);
+        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null , initializer);*/
+        // "5. 使用默认 ConversionService 转换"
+/*        ApplicationConversionService service = new ApplicationConversionService();
+        ConfigurableWebBindingInitializer initializer = new ConfigurableWebBindingInitializer();
+        initializer.setConversionService(service);
+
+        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null, initializer);*/
 
         WebDataBinder dataBinder = factory.createBinder(new ServletWebRequest(request), target, "user");
         dataBinder.bind(new ServletRequestParameterPropertyValues(request));
@@ -63,7 +64,7 @@ public class TestServletDataBinderFactory {
     }
 
     public static class User {
-        @DateTimeFormat(pattern = "yyyy|MM|dd")
+        // @DateTimeFormat(pattern = "yyyy|MM|dd")
         private Date birthday;
         private Address address;
 

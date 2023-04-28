@@ -64,7 +64,7 @@ public class A27 {
         // 6. 测试返回值类型为 HttpHeaders 时, 此时不走视图流程
 
         // 7. 测试返回值添加了 @ResponseBody 注解时, 此时不走视图流程
-        test1(context);
+        test3(context);
 
         /*
             学到了什么
@@ -232,7 +232,7 @@ public class A27 {
 
     public static HandlerMethodReturnValueHandlerComposite getReturnValueHandler() {
         HandlerMethodReturnValueHandlerComposite composite = new HandlerMethodReturnValueHandlerComposite();
-        composite.addHandler(new ModelAndViewMethodReturnValueHandler());
+        // composite.addHandler(new ModelAndViewMethodReturnValueHandler());
         composite.addHandler(new ViewNameMethodReturnValueHandler());
         composite.addHandler(new ServletModelAttributeMethodProcessor(false));
         composite.addHandler(new HttpEntityMethodProcessor(List.of(new MappingJackson2HttpMessageConverter())));
@@ -248,7 +248,7 @@ public class A27 {
         log.debug(">>>>>> 渲染视图");
         FreeMarkerViewResolver resolver = context.getBean(FreeMarkerViewResolver.class);
         String viewName = container.getViewName() != null ? container.getViewName() : new DefaultRequestToViewNameTranslator().getViewName(webRequest.getRequest());
-        log.debug("没有获取到视图名, 采用默认视图名: {}", viewName);
+        log.debug("如果没有获取到视图名, 采用默认视图名, 现在的视图名为: {}", viewName);
         // 每次渲染时, 会产生新的视图对象, 它并非被 Spring 所管理, 但确实借助了 Spring 容器来执行初始化
         View view = resolver.resolveViewName(viewName, Locale.getDefault());
         view.render(container.getModel(), webRequest.getRequest(), webRequest.getResponse());
