@@ -23,6 +23,9 @@ public class A17_1 {
         context.registerBean(ConfigurationClassPostProcessor.class);
         context.registerBean(Config.class);
         context.refresh();
+
+        Bean1 bean1 = context.getBean(Bean1.class);
+        bean1.foo();
         context.close();
         // 创建 -> (*) 依赖注入 -> 初始化 (*)
         /*
@@ -84,7 +87,8 @@ public class A17_1 {
         public Bean1() {
             System.out.println("Bean1()");
         }
-        @Autowired public void setBean2(Bean2 bean2) {
+        @Autowired
+        public void setBean2(Bean2 bean2) {
             System.out.println("Bean1 setBean2(bean2) class is: " + bean2.getClass());
         }
         @PostConstruct public void init() {
@@ -96,7 +100,9 @@ public class A17_1 {
         public Bean2() {
             System.out.println("Bean2()");
         }
-        @Autowired public void setBean1(Bean1 bean1) {
+
+        @Autowired
+        public void setBean1(Bean1 bean1) {
             System.out.println("Bean2 setBean1(bean1) class is: " + bean1.getClass());
         }
         @PostConstruct public void init() {

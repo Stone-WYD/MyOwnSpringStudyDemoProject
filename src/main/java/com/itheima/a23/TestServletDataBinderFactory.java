@@ -24,16 +24,16 @@ public class TestServletDataBinderFactory {
 
         User target = new User();
         // "1. 用工厂, 无转换功能"
-        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null, null);
+        // ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null, null);
         // "2. 用 @InitBinder 转换"          PropertyEditorRegistry PropertyEditor
 /*        InvocableHandlerMethod method = new InvocableHandlerMethod(new MyController(), MyController.class.getMethod("aaa", WebDataBinder.class));
         ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(List.of(method), null);*/
         // "3. 用 ConversionService 转换"    ConversionService Formatter
-//        FormattingConversionService service = new FormattingConversionService();
-//        service.addFormatter(new MyDateFormatter("用 ConversionService 方式扩展转换功能"));
-//        ConfigurableWebBindingInitializer initializer = new ConfigurableWebBindingInitializer();
-//        initializer.setConversionService(service);
-//        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null, initializer);
+        FormattingConversionService service = new FormattingConversionService();
+        service.addFormatter(new MyDateFormatter("用 ConversionService 方式扩展转换功能"));
+        ConfigurableWebBindingInitializer initializer = new ConfigurableWebBindingInitializer();
+        initializer.setConversionService(service);
+        ServletRequestDataBinderFactory factory = new ServletRequestDataBinderFactory(null, initializer);
         // "4. 同时加了 @InitBinder 和 ConversionService"
 /*        InvocableHandlerMethod method = new InvocableHandlerMethod(new MyController(), MyController.class.getMethod("aaa", WebDataBinder.class));
 
