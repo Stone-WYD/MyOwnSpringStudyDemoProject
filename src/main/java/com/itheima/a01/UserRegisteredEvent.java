@@ -6,4 +6,5 @@ public class UserRegisteredEvent extends ApplicationEvent {
     public UserRegisteredEvent(Object source) {
         super(source);
     }
+
 }
