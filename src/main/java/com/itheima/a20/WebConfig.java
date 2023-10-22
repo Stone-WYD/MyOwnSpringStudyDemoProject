@@ -1,5 +1,7 @@
 package com.itheima.a20;
 
+import com.itheima.a20.customize.TokenArgumentResolver;
+import com.itheima.a20.customize.YmlReturnValueHandler;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletRegistrationBean;
@@ -10,16 +12,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Configuration
