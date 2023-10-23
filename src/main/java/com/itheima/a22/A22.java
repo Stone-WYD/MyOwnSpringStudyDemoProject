@@ -1,6 +1,6 @@
 package com.itheima.a22;
 
-import com.itheima.a04.Bean2;
+import com.itheima.a22.Bean2;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.StandardReflectionParameterNameDiscoverer;
 
