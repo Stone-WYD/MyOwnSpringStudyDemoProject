@@ -11,13 +11,14 @@ import java.util.Date;
 public class TestServletDataBinder {
 
     public static void main(String[] args) {
-        // web 环境下数据绑定
+        // web 环境下数据绑定，依赖 get/set 方法
         MyBean target = new MyBean();
         ServletRequestDataBinder dataBinder = new ServletRequestDataBinder(target);
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.setParameter("a", "10");
         request.setParameter("b", "hello");
         request.setParameter("c", "1999/03/04");
+        request.setParameter("myInner.name", "wyd");
 
         dataBinder.bind(new ServletRequestParameterPropertyValues(request));
 
@@ -28,6 +29,15 @@ public class TestServletDataBinder {
         private int a;
         private String b;
         private Date c;
+        private MyInner myInner;
+
+        public MyInner getMyInner() {
+            return myInner;
+        }
+
+        public void setMyInner(MyInner myInner) {
+            this.myInner = myInner;
+        }
 
         public int getA() {
             return a;
@@ -56,10 +66,30 @@ public class TestServletDataBinder {
         @Override
         public String toString() {
             return "MyBean{" +
-                   "a=" + a +
-                   ", b='" + b + '\'' +
-                   ", c=" + c +
-                   '}';
+                    "a=" + a +
+                    ", b='" + b + '\'' +
+                    ", c=" + c +
+                    ", myInner=" + myInner +
+                    '}';
+        }
+    }
+
+    static class MyInner {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return "MyInner{" +
+                    "name='" + name + '\'' +
+                    '}';
         }
     }
 }
