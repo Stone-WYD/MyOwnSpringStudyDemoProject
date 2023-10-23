@@ -64,7 +64,7 @@ public class A27 {
         // 6. 测试返回值类型为 HttpHeaders 时, 此时不走视图流程
 
         // 7. 测试返回值添加了 @ResponseBody 注解时, 此时不走视图流程
-        test3(context);
+        test7(context);
 
         /*
             学到了什么
@@ -74,6 +74,7 @@ public class A27 {
                 b. 组合模式在 Spring 中的体现 + 1
          */
     }
+
     private static void test7(AnnotationConfigApplicationContext context) throws Exception {
         Method method = Controller.class.getMethod("test7");
         Controller controller = new Controller();
@@ -232,7 +233,7 @@ public class A27 {
 
     public static HandlerMethodReturnValueHandlerComposite getReturnValueHandler() {
         HandlerMethodReturnValueHandlerComposite composite = new HandlerMethodReturnValueHandlerComposite();
-        // composite.addHandler(new ModelAndViewMethodReturnValueHandler());
+        composite.addHandler(new ModelAndViewMethodReturnValueHandler());
         composite.addHandler(new ViewNameMethodReturnValueHandler());
         composite.addHandler(new ServletModelAttributeMethodProcessor(false));
         composite.addHandler(new HttpEntityMethodProcessor(List.of(new MappingJackson2HttpMessageConverter())));
