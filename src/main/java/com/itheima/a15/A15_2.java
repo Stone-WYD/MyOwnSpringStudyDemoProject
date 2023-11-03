@@ -1,5 +1,6 @@
 package com.itheima.a15;
 
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
@@ -21,6 +22,7 @@ public class A15_2 {
         // 获取所有可选的切面
         Method findEligibleAdvisors = AbstractAdvisorAutoProxyCreator.class.getDeclaredMethod("findEligibleAdvisors", Class.class, String.class);
         findEligibleAdvisors.setAccessible(true);
+        // 这里的 obj 获取到的是所有的切面(Advisor)
         List obj = (List) findEligibleAdvisors.invoke(creator, Bean1.class, "bean1");
         for (Object o : obj) {
             System.out.println(o);
@@ -42,12 +44,22 @@ public class A15_2 {
         public void before1(){
 
         }
+
+        @After("execution(* foo())")
+        public void after1(){
+
+        }
     }
 
     @Aspect
     static class Aspect2 {
         @Before("execution(* foo())")
         public void before2(){
+
+        }
+
+        @After("execution(* foo())")
+        public void after2(){
 
         }
     }
